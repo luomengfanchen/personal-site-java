@@ -9,15 +9,18 @@
     <result column="reading" jdbcType="BIGINT" property="reading" />
     <result column="releaseDate" jdbcType="TIMESTAMP" property="releasedate" />
   </resultMap>
+
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.example.personalsite.model.Article">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+
   <sql id="Base_Column_List">
     id, title, author, category, reading, releaseDate
   </sql>
   <sql id="Blob_Column_List">
     content
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
@@ -26,6 +29,15 @@
     from article_t
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_t
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from article_t
     where id = #{id,jdbcType=INTEGER}
