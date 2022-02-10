@@ -1,7 +1,7 @@
 package com.example.personalsite.service;
 
-import com.example.personalsite.model.Article;
+import com.example.personalsite.utils.ArticleResponse;
 
 public interface ArticleService {
-    Article[] selectAll();
+    ArticleResponse Article();
 }
