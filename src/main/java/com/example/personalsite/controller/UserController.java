@@ -21,4 +21,10 @@ public class UserController {
 
         return userService.Register(param);
     }
+
+    @PostMapping(value = "/api/login")
+    public @ResponseBody Response UserLogin(@RequestBody User param) {
+
+        return userService.Login(param);
+    }
 }

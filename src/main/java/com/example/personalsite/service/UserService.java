@@ -5,4 +5,6 @@ import com.example.personalsite.utils.Response;
 
 public interface UserService {
     Response Register(User user);
+
+    Response Login(User user);
 }

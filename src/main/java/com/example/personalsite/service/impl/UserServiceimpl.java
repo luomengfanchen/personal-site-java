@@ -34,4 +34,19 @@ public class UserServiceimpl implements UserService{
 
         return Response.responseOK();
     }
+
+    @Override
+    public Response Login(User user) {
+
+        // 加密密码
+        user.setPassword(Encoding.Md5(user.getPassword()));
+
+        // 验证用户密码是否正确
+        User authUser = userMapper.selectByEmailAndPassword(user.getEmail(), user.getPassword());
+        if (authUser == null) {
+            return Response.responseError();
+        }
+
+        return Response.responseOK(authUser.getToken());
+    }
 }
