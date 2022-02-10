@@ -8,25 +8,37 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="token" jdbcType="VARCHAR" property="token" />
   </resultMap>
+
   <sql id="Base_Column_List">
     id, name, email, password, token
   </sql>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from user_t
     where id = #{id,jdbcType=INTEGER}
   </select>
+
+  <select id="selectByuserName" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from user_t
+    where name = #{username,jdbcType=VARCHAR}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from user_t
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <insert id="insert" parameterType="com.example.personalsite.model.User">
     insert into user_t (id, name, email, 
       password, token)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{password,jdbcType=VARCHAR}, #{token,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.example.personalsite.model.User">
     insert into user_t
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -64,6 +76,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.example.personalsite.model.User">
     update user_t
     <set>
@@ -82,6 +95,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.example.personalsite.model.User">
     update user_t
     set name = #{name,jdbcType=VARCHAR},
@@ -90,4 +104,5 @@
       token = #{token,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

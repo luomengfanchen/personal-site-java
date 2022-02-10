@@ -1,7 +1,7 @@
 package com.example.personalsite.service;
 
-import com.example.personalsite.utils.ArticleResponse;
+import com.example.personalsite.utils.Response;
 
 public interface ArticleService {
-    ArticleResponse Article();
+    Response Article();
 }
