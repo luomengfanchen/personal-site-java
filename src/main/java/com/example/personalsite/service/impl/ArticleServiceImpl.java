@@ -20,5 +20,11 @@ public class ArticleServiceImpl implements ArticleService{
 
         return Response.responseOK(data);
     }
-    
+
+    @Override
+    public Response Article(int id) {
+        Article data = articleMapper.selectByPrimaryKey(id);
+
+        return Response.responseOK(data);
+    }
 }

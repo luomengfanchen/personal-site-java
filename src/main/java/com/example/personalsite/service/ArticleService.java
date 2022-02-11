@@ -4,4 +4,6 @@ import com.example.personalsite.utils.Response;
 
 public interface ArticleService {
     Response Article();
+
+    Response Article(int id);
 }
