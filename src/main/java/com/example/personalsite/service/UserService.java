@@ -7,4 +7,6 @@ public interface UserService {
     Response Register(User user);
 
     Response Login(User user);
+
+    Response UserInfoGet(String token);
 }

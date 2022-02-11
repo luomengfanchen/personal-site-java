@@ -49,4 +49,15 @@ public class UserServiceimpl implements UserService{
 
         return Response.responseOK(authUser.getToken());
     }
+
+    @Override
+    public Response UserInfoGet(String token) {
+        User userInfo = userMapper.selectByToken(token);
+
+        User respUser = new User();
+        respUser.setEmail(userInfo.getEmail());
+        respUser.setName(userInfo.getName());
+
+        return Response.responseOK(respUser);
+    }
 }

@@ -15,6 +15,8 @@ public interface UserMapper {
 
     User selectByEmailAndPassword(String email, String password);
 
+    User selectByToken(String token);
+
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
