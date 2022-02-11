@@ -1,9 +1,28 @@
 package com.example.personalsite.service;
 
+import com.example.personalsite.mapper.ArticleMapper;
+import com.example.personalsite.model.Article;
+import com.example.personalsite.service.ArticleService;
 import com.example.personalsite.utils.Response;
 
-public interface ArticleService {
-    Response Article();
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    Response Article(int id);
+@Service
+public class ArticleService{
+
+    @Autowired
+    private ArticleMapper articleMapper;
+
+    public Response Article() {
+        Article[] data = articleMapper.selectAll();
+
+        return Response.responseOK(data);
+    }
+
+    public Response Article(int id) {
+        Article data = articleMapper.selectByPrimaryKey(id);
+
+        return Response.responseOK(data);
+    }
 }
