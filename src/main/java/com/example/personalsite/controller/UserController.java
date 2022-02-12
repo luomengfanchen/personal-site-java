@@ -1,5 +1,6 @@
 package com.example.personalsite.controller;
 
+import com.example.personalsite.model.Article;
 import com.example.personalsite.model.User;
 import com.example.personalsite.service.UserService;
 import com.example.personalsite.utils.Response;
@@ -49,5 +50,27 @@ public class UserController {
     public @ResponseBody Response UserGet(@RequestHeader("Authorization") String token) {
 
         return userService.UserInfoGet(token);
+    }
+
+    /**
+     * 获取用户自己的文章
+     * @return
+     */
+    @GetMapping(value = "/api/user/article")
+    public @ResponseBody Response GetArticle(@RequestHeader("Authorization") String token) {
+        return null;
+    }
+
+    /**
+     * 用户新建自己的文章
+     * @param token
+     * @param param
+     * @return
+     */
+    @PostMapping(value = "/api/user/article")
+    public @ResponseBody Response NewArticle(@RequestHeader("Authorization") String token,
+                                        @RequestBody Article param) {
+
+        return userService.NewArticle(token, param);
     }
 }

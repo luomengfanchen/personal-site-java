@@ -1,6 +1,10 @@
 package com.example.personalsite.service;
 
+import java.util.Date;
+
+import com.example.personalsite.mapper.ArticleMapper;
 import com.example.personalsite.mapper.UserMapper;
+import com.example.personalsite.model.Article;
 import com.example.personalsite.model.User;
 import com.example.personalsite.service.UserService;
 import com.example.personalsite.utils.Encoding;
@@ -14,6 +18,9 @@ public class UserService{
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ArticleMapper articleMapper;
 
     public Response Register(User user) {
 
@@ -58,5 +65,20 @@ public class UserService{
         respUser.setName(userInfo.getName());
 
         return Response.responseOK(respUser);
+    }
+
+    public Response NewArticle(String token, Article article) {
+
+        User userInfo = userMapper.selectByToken(token);
+
+        article.setAuthor(userInfo.getName());
+        article.setReleasedate(new Date());
+        article.setReading(0L);
+
+        int result = articleMapper.insertSelective(article);
+
+        System.out.println(result);
+
+        return Response.responseOK();
     }
 }

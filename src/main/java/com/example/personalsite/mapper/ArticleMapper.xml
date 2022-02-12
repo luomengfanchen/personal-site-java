@@ -36,6 +36,7 @@
     ,
     <include refid="Blob_Column_List" />
     from article_t
+    ORDER BY releaseDate DESC
   </select>
 
   <select id="selectByTitle" resultMap="ResultMapWithBLOBs">
