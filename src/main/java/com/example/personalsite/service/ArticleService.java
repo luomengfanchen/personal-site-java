@@ -31,4 +31,10 @@ public class ArticleService{
 
         return Response.responseOK(data);
     }
+
+    public Response ArticleOfCategory(String category) {
+        Article[] data = articleMapper.selectByCategory(category);
+
+        return Response.responseOK(data);
+    }
 }

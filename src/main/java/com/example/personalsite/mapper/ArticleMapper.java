@@ -15,6 +15,8 @@ public interface ArticleMapper {
 
     Article[] selectByTitle(String title);
 
+    Article[] selectByCategory(String category);
+
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKeyWithBLOBs(Article record);

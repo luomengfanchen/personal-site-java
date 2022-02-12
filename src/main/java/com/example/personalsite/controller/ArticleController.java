@@ -25,7 +25,8 @@ public class ArticleController {
      */
     @GetMapping(value = "/api/article")
     public @ResponseBody Response Article(@RequestParam(required = false) String id,
-                                        @RequestParam(required = false) String search) {
+                                        @RequestParam(required = false) String search,
+                                        @RequestParam(required = false) String category) {
 
         if (id != null) {
             return articleService.Article(Integer.parseInt(id));
@@ -33,6 +34,10 @@ public class ArticleController {
 
         if (search != null) {
             return articleService.Article(search);
+        }
+
+        if (category != null) {
+            return articleService.ArticleOfCategory(category);
         }
 
         return articleService.Article();
