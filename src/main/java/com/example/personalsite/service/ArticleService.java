@@ -25,4 +25,10 @@ public class ArticleService{
 
         return Response.responseOK(data);
     }
+
+    public Response Article(String searchValue) {
+        Article[] data = articleMapper.selectByTitle(searchValue);
+
+        return Response.responseOK(data);
+    }
 }

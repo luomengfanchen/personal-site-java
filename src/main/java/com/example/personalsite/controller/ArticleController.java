@@ -24,10 +24,15 @@ public class ArticleController {
      * @return
      */
     @GetMapping(value = "/api/article")
-    public @ResponseBody Response Article(@RequestParam(required = false) String id) {
+    public @ResponseBody Response Article(@RequestParam(required = false) String id,
+                                        @RequestParam(required = false) String search) {
 
         if (id != null) {
             return articleService.Article(Integer.parseInt(id));
+        }
+
+        if (search != null) {
+            return articleService.Article(search);
         }
 
         return articleService.Article();
