@@ -9,11 +9,6 @@
 5. 文章的删除(TODO)
 
 # 如何运行项目
-- 运行mybatis逆向生成代码
-```bash
-mvn mybatis-generator:generate
-```
-
 - 运行springboot项目
 ```bash
 mvn spring-boot:run
