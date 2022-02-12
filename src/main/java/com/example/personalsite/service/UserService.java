@@ -7,6 +7,7 @@ import com.example.personalsite.mapper.UserMapper;
 import com.example.personalsite.model.Article;
 import com.example.personalsite.model.User;
 import com.example.personalsite.service.UserService;
+import com.example.personalsite.utils.ConverArticle;
 import com.example.personalsite.utils.Encoding;
 import com.example.personalsite.utils.Response;
 
@@ -80,5 +81,13 @@ public class UserService{
         System.out.println(result);
 
         return Response.responseOK();
+    }
+
+    public Response GetArticle(String token) {
+        User userInfo = userMapper.selectByToken(token);
+
+        Article[] article = articleMapper.selectByAuthor(userInfo.getName());
+
+        return Response.responseOK(ConverArticle.Conver(article));
     }
 }

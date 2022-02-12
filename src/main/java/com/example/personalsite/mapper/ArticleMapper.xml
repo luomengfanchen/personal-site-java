@@ -59,6 +59,16 @@
     ORDER BY releaseDate DESC
   </select>
 
+  <select id="selectByAuthor" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from article_t
+    where author = #{author,jdbcType=VARCHAR}
+    ORDER BY releaseDate DESC
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from article_t
     where id = #{id,jdbcType=INTEGER}

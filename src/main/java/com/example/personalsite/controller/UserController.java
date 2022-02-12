@@ -58,7 +58,7 @@ public class UserController {
      */
     @GetMapping(value = "/api/user/article")
     public @ResponseBody Response GetArticle(@RequestHeader("Authorization") String token) {
-        return null;
+        return userService.GetArticle(token);
     }
 
     /**
