@@ -7,6 +7,7 @@ import com.example.personalsite.utils.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,5 +89,19 @@ public class UserController {
                                         @RequestBody Article param) {
 
         return userService.ModifyArticle(token, id, param);
+    }
+
+    /**
+     * 删除用户自己的文章
+     * @param token
+     * @param id
+     * @param param
+     * @return
+     */
+    @DeleteMapping(value = "/api/user/article/{id}")
+        public @ResponseBody Response DeleteyArticle(@RequestHeader("Authorization") String token,
+                                        @PathVariable Integer id) {
+
+        return userService.DeleteArticle(token, id);
     }
 }

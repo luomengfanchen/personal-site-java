@@ -76,9 +76,7 @@ public class UserService{
         article.setReleasedate(new Date());
         article.setReading(0L);
 
-        int result = articleMapper.insertSelective(article);
-
-        System.out.println(result);
+        articleMapper.insertSelective(article);
 
         return Response.responseOK();
     }
@@ -98,8 +96,22 @@ public class UserService{
         param.setId(id);
         param.setAuthor(userInfo.getName());
         param.setReleasedate(new Date());
+        param.setReading(0L);
 
-        articleMapper.updateByPrimaryKey(param);
+        articleMapper.updateByPrimaryKeyWithBLOBs(param);
+
+        return Response.responseOK();
+    }
+
+    public Response DeleteArticle(String token, Integer id) {
+
+        User userInfo = userMapper.selectByToken(token);
+
+        if (userInfo == null) {
+            return Response.responseError();
+        }
+
+        articleMapper.deleteByPrimaryKey(id);
 
         return Response.responseOK();
     }
