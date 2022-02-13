@@ -8,6 +8,8 @@ import com.example.personalsite.utils.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -72,5 +74,19 @@ public class UserController {
                                         @RequestBody Article param) {
 
         return userService.NewArticle(token, param);
+    }
+
+    /**
+     * 修改用户自己的文章
+     * @param token
+     * @param param
+     * @return
+     */
+    @PatchMapping(value = "/api/user/article/{id}")
+    public @ResponseBody Response ModifyArticle(@RequestHeader("Authorization") String token,
+                                        @PathVariable Integer id,
+                                        @RequestBody Article param) {
+
+        return userService.ModifyArticle(token, id, param);
     }
 }

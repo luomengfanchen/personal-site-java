@@ -90,4 +90,17 @@ public class UserService{
 
         return Response.responseOK(ConverArticle.Conver(article));
     }
+
+    public Response ModifyArticle(String token, Integer id, Article param) {
+
+        User userInfo = userMapper.selectByToken(token);
+
+        param.setId(id);
+        param.setAuthor(userInfo.getName());
+        param.setReleasedate(new Date());
+
+        articleMapper.updateByPrimaryKey(param);
+
+        return Response.responseOK();
+    }
 }
