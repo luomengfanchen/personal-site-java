@@ -60,6 +60,7 @@
 				<directory>src/main/resources</directory>
 				<includes>
 					<include>*.properties</include>
+					<include>banner.txt</include>
 				</includes>
 			</resource>
 		</resources>

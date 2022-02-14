@@ -9,6 +9,9 @@
 5. 文章的删除
 
 # 如何运行项目
+- 数据库备份文件
+`resources/sql/setup.sql`
+
 - 运行springboot项目
 ```bash
 mvn spring-boot:run
