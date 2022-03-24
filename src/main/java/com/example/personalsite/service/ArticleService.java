@@ -15,24 +15,43 @@ public class ArticleService{
     @Autowired
     private ArticleMapper articleMapper;
 
+    /**
+     * 返回所有文章
+     * @return
+     */
     public Response Article() {
         Article[] data = articleMapper.selectAll();
 
         return Response.responseOK(ConverArticle.Conver(data));
     }
 
+    /**
+     * 返回指定id的文章
+     * @param id
+     * @return
+     */
     public Response Article(int id) {
         Article data = articleMapper.selectByPrimaryKey(id);
 
         return Response.responseOK(ConverArticle.Conver(data));
     }
 
+    /**
+     * 搜索文章
+     * @param searchValue
+     * @return
+     */
     public Response Article(String searchValue) {
         Article[] data = articleMapper.selectByTitle(searchValue);
 
         return Response.responseOK(ConverArticle.Conver(data));
     }
 
+    /**
+     * 返回指定分类的文章
+     * @param category
+     * @return
+     */
     public Response ArticleOfCategory(String category) {
         Article[] data = articleMapper.selectByCategory(category);
 

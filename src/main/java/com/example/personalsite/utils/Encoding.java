@@ -4,6 +4,11 @@ import org.springframework.util.DigestUtils;
 
 public class Encoding {
 
+    /**
+     * MD5加密
+     * @param param
+     * @return
+     */
     public static String Md5(String param) {
 
         byte[] binaryData = param.getBytes();

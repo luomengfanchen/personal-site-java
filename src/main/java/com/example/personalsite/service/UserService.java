@@ -23,6 +23,11 @@ public class UserService{
     @Autowired
     private ArticleMapper articleMapper;
 
+    /**
+     * 处理用户注册请求
+     * @param user
+     * @return 注册是否成功
+     */
     public Response Register(User user) {
 
         // 查询用户是否已注册
@@ -43,6 +48,11 @@ public class UserService{
     }
 
 
+    /**
+     * 处理用户登录请求
+     * @param user
+     * @return 用户token
+     */
     public Response Login(User user) {
 
         // 加密密码
@@ -58,6 +68,11 @@ public class UserService{
     }
 
 
+    /**
+     * 返回用户信息
+     * @param token
+     * @return
+     */
     public Response UserInfoGet(String token) {
         User userInfo = userMapper.selectByToken(token);
 
@@ -68,6 +83,12 @@ public class UserService{
         return Response.responseOK(respUser);
     }
 
+    /**
+     * 新建文章
+     * @param token
+     * @param article
+     * @return
+     */
     public Response NewArticle(String token, Article article) {
 
         User userInfo = userMapper.selectByToken(token);
@@ -81,6 +102,11 @@ public class UserService{
         return Response.responseOK();
     }
 
+    /**
+     * 返回用户自己的文章
+     * @param token
+     * @return
+     */
     public Response GetArticle(String token) {
         User userInfo = userMapper.selectByToken(token);
 
@@ -89,6 +115,13 @@ public class UserService{
         return Response.responseOK(ConverArticle.Conver(article));
     }
 
+    /**
+     * 修改文章
+     * @param token
+     * @param id
+     * @param param
+     * @return
+     */
     public Response ModifyArticle(String token, Integer id, Article param) {
 
         User userInfo = userMapper.selectByToken(token);
@@ -103,6 +136,12 @@ public class UserService{
         return Response.responseOK();
     }
 
+    /**
+     * 删除文章
+     * @param token
+     * @param id
+     * @return
+     */
     public Response DeleteArticle(String token, Integer id) {
 
         User userInfo = userMapper.selectByToken(token);

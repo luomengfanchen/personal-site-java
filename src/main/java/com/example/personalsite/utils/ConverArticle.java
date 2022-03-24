@@ -6,6 +6,11 @@ import com.example.personalsite.model.Article;
 import com.example.personalsite.model.ResponseArticle;
 
 public class ConverArticle {
+    /**
+     * 转换数据封装
+     * @param article
+     * @return
+     */
     public static ResponseArticle Conver(Article article) {
         ResponseArticle resp = new ResponseArticle();
 
@@ -20,6 +25,11 @@ public class ConverArticle {
         return resp;
     }
 
+    /**
+     * 转换数据封装
+     * @param articles
+     * @return
+     */
     public static ResponseArticle[] Conver(Article[] articles) {
         ResponseArticle[] resp = new ResponseArticle[articles.length];
 

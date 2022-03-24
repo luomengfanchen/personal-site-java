@@ -7,6 +7,9 @@ import com.example.personalsite.mapper.UserMapper;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 
+/**
+ * 用户验证拦截器
+ */
 public class UserAuthInterceptor implements HandlerInterceptor {
 
     private UserMapper userMapper;

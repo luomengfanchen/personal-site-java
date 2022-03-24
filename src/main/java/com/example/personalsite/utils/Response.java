@@ -17,6 +17,11 @@ public class Response {
         return this.data;
     }
 
+    /**
+     * 返回成功响应
+     * @param data
+     * @return
+     */
     public static Response responseOK(Object data) {
         Response resp = new Response();
 
@@ -27,6 +32,10 @@ public class Response {
         return resp;
     }
 
+    /**
+     * 返回成功响应
+     * @return
+     */
     public static Response responseOK() {
         Response resp = new Response();
 
@@ -36,6 +45,10 @@ public class Response {
         return resp;
     }
 
+    /**
+     * 返回错误响应
+     * @return
+     */
     public static Response responseError() {
         Response resp = new Response();
 
