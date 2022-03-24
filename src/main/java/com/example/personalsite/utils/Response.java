@@ -1,5 +1,8 @@
 package com.example.personalsite.utils;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
 public class Response {
     private int code;
     private String msg;
@@ -22,39 +25,39 @@ public class Response {
      * @param data
      * @return
      */
-    public static Response responseOK(Object data) {
+    public static ResponseEntity<Object> responseOK(Object data) {
         Response resp = new Response();
 
         resp.code = 200;
         resp.msg = "successful";
         resp.data = data;
 
-        return resp;
+        return new ResponseEntity<Object>(resp, HttpStatus.OK);
     }
 
     /**
      * 返回成功响应
      * @return
      */
-    public static Response responseOK() {
+    public static ResponseEntity<Object> responseOK() {
         Response resp = new Response();
 
         resp.code = 200;
         resp.msg = "successful";
 
-        return resp;
+        return new ResponseEntity<Object>(resp, HttpStatus.OK);
     }
 
     /**
      * 返回错误响应
      * @return
      */
-    public static Response responseError() {
+    public static ResponseEntity<Object> responseError() {
         Response resp = new Response();
 
         resp.code = 400;
         resp.msg = "error";
 
-        return resp;
+        return new ResponseEntity<Object>(resp, HttpStatus.BAD_REQUEST);
     }
 }

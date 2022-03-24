@@ -1,13 +1,12 @@
 package com.example.personalsite.controller;
 
 import com.example.personalsite.service.ArticleService;
-import com.example.personalsite.utils.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ArticleController {
@@ -24,7 +23,7 @@ public class ArticleController {
      * @return
      */
     @GetMapping(value = "/api/article")
-    public @ResponseBody Response Article(@RequestParam(required = false) String id,
+    public ResponseEntity<Object> Article(@RequestParam(required = false) String id,
                                         @RequestParam(required = false) String search,
                                         @RequestParam(required = false) String category) {
 

@@ -3,9 +3,9 @@ package com.example.personalsite.controller;
 import com.example.personalsite.model.Article;
 import com.example.personalsite.model.User;
 import com.example.personalsite.service.UserService;
-import com.example.personalsite.utils.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class UserController {
@@ -28,7 +27,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/api/register")
-    public @ResponseBody Response UserRegister(@RequestBody User param) {
+    public ResponseEntity<Object> UserRegister(@RequestBody User param) {
 
         return userService.Register(param);
     }
@@ -39,7 +38,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/api/login")
-    public @ResponseBody Response UserLogin(@RequestBody User param) {
+    public ResponseEntity<Object> UserLogin(@RequestBody User param) {
 
         return userService.Login(param);
     }
@@ -50,7 +49,7 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "/api/user/user")
-    public @ResponseBody Response UserGet(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Object> UserGet(@RequestHeader("Authorization") String token) {
 
         return userService.UserInfoGet(token);
     }
@@ -60,7 +59,7 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "/api/user/article")
-    public @ResponseBody Response GetArticle(@RequestHeader("Authorization") String token) {
+    public ResponseEntity<Object> GetArticle(@RequestHeader("Authorization") String token) {
         return userService.GetArticle(token);
     }
 
@@ -71,7 +70,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "/api/user/article")
-    public @ResponseBody Response NewArticle(@RequestHeader("Authorization") String token,
+    public ResponseEntity<Object> NewArticle(@RequestHeader("Authorization") String token,
                                         @RequestBody Article param) {
 
         return userService.NewArticle(token, param);
@@ -84,7 +83,7 @@ public class UserController {
      * @return
      */
     @PatchMapping(value = "/api/user/article/{id}")
-    public @ResponseBody Response ModifyArticle(@RequestHeader("Authorization") String token,
+    public ResponseEntity<Object> ModifyArticle(@RequestHeader("Authorization") String token,
                                         @PathVariable Integer id,
                                         @RequestBody Article param) {
 
@@ -99,7 +98,7 @@ public class UserController {
      * @return
      */
     @DeleteMapping(value = "/api/user/article/{id}")
-        public @ResponseBody Response DeleteyArticle(@RequestHeader("Authorization") String token,
+        public ResponseEntity<Object> DeleteyArticle(@RequestHeader("Authorization") String token,
                                         @PathVariable Integer id) {
 
         return userService.DeleteArticle(token, id);

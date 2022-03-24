@@ -12,6 +12,7 @@ import com.example.personalsite.utils.Encoding;
 import com.example.personalsite.utils.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,7 +29,7 @@ public class UserService{
      * @param user
      * @return 注册是否成功
      */
-    public Response Register(User user) {
+    public ResponseEntity<Object> Register(User user) {
 
         // 查询用户是否已注册
         if (userMapper.selectByuserName(user.getName()) != null) {
@@ -53,7 +54,7 @@ public class UserService{
      * @param user
      * @return 用户token
      */
-    public Response Login(User user) {
+    public ResponseEntity<Object> Login(User user) {
 
         // 加密密码
         user.setPassword(Encoding.Md5(user.getPassword()));
@@ -73,7 +74,7 @@ public class UserService{
      * @param token
      * @return
      */
-    public Response UserInfoGet(String token) {
+    public ResponseEntity<Object> UserInfoGet(String token) {
         User userInfo = userMapper.selectByToken(token);
 
         User respUser = new User();
@@ -89,7 +90,7 @@ public class UserService{
      * @param article
      * @return
      */
-    public Response NewArticle(String token, Article article) {
+    public ResponseEntity<Object> NewArticle(String token, Article article) {
 
         User userInfo = userMapper.selectByToken(token);
 
@@ -107,7 +108,7 @@ public class UserService{
      * @param token
      * @return
      */
-    public Response GetArticle(String token) {
+    public ResponseEntity<Object> GetArticle(String token) {
         User userInfo = userMapper.selectByToken(token);
 
         Article[] article = articleMapper.selectByAuthor(userInfo.getName());
@@ -122,7 +123,7 @@ public class UserService{
      * @param param
      * @return
      */
-    public Response ModifyArticle(String token, Integer id, Article param) {
+    public ResponseEntity<Object> ModifyArticle(String token, Integer id, Article param) {
 
         User userInfo = userMapper.selectByToken(token);
 
@@ -142,7 +143,7 @@ public class UserService{
      * @param id
      * @return
      */
-    public Response DeleteArticle(String token, Integer id) {
+    public ResponseEntity<Object> DeleteArticle(String token, Integer id) {
 
         User userInfo = userMapper.selectByToken(token);
 
